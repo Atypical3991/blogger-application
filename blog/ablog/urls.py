@@ -16,10 +16,13 @@ Including another URLconf
 
 from django.urls import path
 from . import views
-from .views import HomeView, ArticleDetailView
+from .views import HomeView, ArticleDetailView, AddArticle, UpdateArticle
 
 urlpatterns = [
     # path('', views.home, name='home')
     path('', HomeView.as_view(), name='home'),
-    path('article/<int:pk>', ArticleDetailView.as_view(), name='article-detail')
+    path('article/<int:pk>', ArticleDetailView.as_view(), name='article-detail'),
+    path('article/', AddArticle.as_view(), name='add-article'),
+    path('article/edit/<int:pk>', UpdateArticle.as_view(), name='article-edit'),
+
 ]
