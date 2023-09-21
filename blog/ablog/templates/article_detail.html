@@ -8,7 +8,7 @@
 <small><a href="{% url 'article-edit' post.id%}">Edit</a> <a href="{% url 'article-delete' post.id%}">Remove</a><br/></small>
 </hr>
 </br>
-<p>{{post.body}}</p>
+<p>{{post.body|safe}}</p>
 
 
 <br/></br>
