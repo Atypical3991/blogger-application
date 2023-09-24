@@ -5,7 +5,9 @@
 
 <h1>{{post.title}}</h1>
 <small>By: {{post.author.first_name}} {{post.author.last_name}}</small>
+{% if user.is_authenticated and user.id == post.author.id %}
 <small><a href="{% url 'article-edit' post.id%}">Edit</a> <a href="{% url 'article-delete' post.id%}">Remove</a><br/></small>
+{% endif %}
 </hr>
 </br>
 <p>{{post.body|safe}}</p>
@@ -16,5 +18,21 @@
     <button type="button" class="btn btn-primary">Back</button>
 </a>
 
+<br></br>
+<hr>
+<br/>
+<form action="{% url 'like_post' post.pk%}" method="POST">
+    {% csrf_token%}
+    {% if user.is_authenticated %}
+    {% if liked %}
+        <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-danger btn-sm">UnLike</button>
+    {% else %}
+        <button type="submit" name="post_id" value="{{post.id}}" class="btn btn-primary btn-sm">Like</button>
+    {% endif %}
+    {% else %}
+    <small><a href="{% url 'login' %}">Login</a></small>
+    {% endif %}
+    - {{total_likes}} Likes
+</form>
 {% endblock %}
 

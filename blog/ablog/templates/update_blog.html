@@ -2,6 +2,8 @@
 
 {% block title %} Update Blog {% endblock%}
 {% block content%}
+
+{% if user.is_authenticated  and user.id == post.author.id%}
 <h1>Update Blog</h1>
 <div class="form-group">
     <form method="POST">
@@ -10,6 +12,7 @@
         <button class="btn btn-secondary">Update</button>
     </form>
 </div>
-
-
+{% else %}
+<p>You're not allowed here!!</p>
+{% endif %}
 {% endblock %}

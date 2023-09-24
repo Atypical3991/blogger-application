@@ -2,6 +2,8 @@
 
 {% block title %} Add Category {% endblock%}
 {% block content%}
+
+{% if user.is_authenticated and user.id == 1 %}
 <h1>Add Category</h1>
 <div class="form-group">
     <form method="POST">
@@ -10,6 +12,7 @@
         <button class="btn btn-secondary">Add Category</button>
     </form>
 </div>
-
-
+{% else %}
+<p>You're not allowed here!!</p>
+{% endif %}
 {% endblock %}
