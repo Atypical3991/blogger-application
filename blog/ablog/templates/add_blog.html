@@ -9,13 +9,13 @@
     <form method="POST">
         {% csrf_token%}
         {{form.as_p}}
+        {{form.media}}
         <button class="btn btn-secondary">Post</button>
     </form>
 </div>
 <script>
     var  id  = "{{ user.id }}"
     document.getElementById("author").value = id
-
 </script>
 {% else %}
 <p>You're not allowed here!!</p>
