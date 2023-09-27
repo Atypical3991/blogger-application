@@ -20,3 +20,13 @@ class  UserEditView(generic.UpdateView):
     def get_object(self):
         return self.request.user
 
+class  UserEditView(generic.UpdateView):
+    form_class = EditProfileForm
+    template_name = 'registration/edit_profile.html'
+    success_url = reverse_lazy("home")
+
+    def get_object(self):
+        return self.request.user
+
+def password_success(request):
+    render(request,'registration/password_success.html',{})
