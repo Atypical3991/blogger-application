@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} My Blogs{% endblock%}
+{% block content%}
+<h1>Post</h1>
+
+<ul>
+    {% for post in object_list %}
+    <li><a href="{% url 'article-detail' post.pk %}"> {{ post.title }}</a> <a href="{% url 'show-posts-by-category' post.category|slugify %}">{{post.category}}</a> - {{ post.author.first_name }} {{ post.author.last_name }} <small>- {{post.blog_date}}
+        {% if user.is_authenticated and user.id == post.author.id %}
+        <a href="{% url 'article-edit' post.id%}">Edit</a>
+        <a href="{% url 'article-delete' post.id%}">Remove</a>
+        {% endif %}
+        <br/></small>
+        {{post.snippet}}
+        {{ post.body|truncatechars:200|safe }}
+        {% endfor %}
+</ul>
+{% endblock %}
