@@ -12,65 +12,74 @@
     <title>{% block title %} Blogger {% endblock%}</title>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="{% url 'home' %}">Blogger Application</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            {% if user.is_authenticated %}
-            {% if cat_menu is not None%}
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                   aria-expanded="false">
-                    Categories
-                </a>
-                <ul class="dropdown-menu">
-                    {% for item in cat_menu%}
-                    <li><a class="dropdown-item" href="{% url 'show-posts-by-category' item|slugify %}">{{item}}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </li>
-            {% endif %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'add-article' %}">Add Blog</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'add-category' %}">Add Category</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                   data-bs-toggle="dropdown" aria-expanded="false">
-                    Profile
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="{% url 'edit_profile'%}">Edit Settings</a></li>
-                    {% if user.profile.id%}
-                    <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id%}">Edit Profile Page</a></li>
-                    <li><a class="dropdown-item" href="{% url 'profile' user.profile.id%}">Show Profile Page</a></li>
-                    {% else %}
-                    <li><a class="dropdown-item" href="{% url 'create_profile_page'%}">Create Profile Page</a></li>
-                    {% endif%}
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'register' %}">Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-            {% endif %}
-        </ul>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+                {% if cat_menu is not None%}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% for item in cat_menu%}
+                        <li><a class="dropdown-item" href="{% url 'show-posts-by-category' item|slugify %}">{{item}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add-article' %}">Add Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'add-category' %}">Add Category</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                {% endif %}
+
+            </ul>
+
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        {{user.first_name}} {{user.last_name}}
+                    </a>
+                    <ul class="dropdown-menu  dropdown-menu-left" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item " href="{% url 'edit_profile'%}">Edit Settings</a></li>
+                        {% if user.profile.id%}
+                        <li><a class="dropdown-item" href="{% url 'edit_profile_page' user.profile.id%}">Edit Profile
+                            Page</a></li>
+                        <li><a class="dropdown-item" href="{% url 'profile' user.profile.id%}">Show Profile Page</a>
+                        </li>
+                        {% else %}
+                        <li><a class="dropdown-item" href="{% url 'create_profile_page'%}">Create Profile Page</a></li>
+                        {% endif%}
+                        <li><a class="dropdown-item"  href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
 </nav>
-</br>
+<br/>
 <div class='container'>
     {% block content%}
     {% endblock %}

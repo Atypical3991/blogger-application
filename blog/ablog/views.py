@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .models import Post, Category, Profile, Comment
-from .forms import PostForm, EditForm, ProfilePageForm
+from .forms import PostForm, EditForm, ProfilePageForm,AddCommentForm
 from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
 
@@ -114,15 +114,11 @@ class ShowProfilePageView(DetailView):
 
 class EditProfilePageView(UpdateView):
     model = Profile
+    form_class = ProfilePageForm
     template_name = 'edit_profile_page.html'
-    fields = ['bio','profile_pic','website_url','facebook_url','twitter_url','instagram_url','pinterest_url']
+    # fields = ['bio','profile_pic','website_url','facebook_url','twitter_url','instagram_url','pinterest_url']
     success_url = reverse_lazy('home')
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(EditProfilePageView, self).get_context_data(*args, **kwargs)
-        profile = get_object_or_404(Profile,id=self.kwargs["pk"])
-        context["profile"] = profile
-        return context
 
 class CreateProfilePageView(CreateView):
     model = Profile
@@ -136,6 +132,10 @@ class CreateProfilePageView(CreateView):
 
 class AddCommentView(CreateView):
     model = Comment
-    # form_class = PostForm
+    form_class = AddCommentForm
     template_name = 'add_comment.html'
-    fields = '__all__'
+    # fields = '__all__'
+    success_url = reverse_lazy('home')
+    def form_valid(self,form):
+        form.instance.post_id = self.kwargs["pk"]
+        return super().form_valid(form)

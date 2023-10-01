@@ -6,10 +6,20 @@
 <div class="form-group">
     <form method="POST">
         {% csrf_token%}
-        {{form.as_p}}
-        <button class="btn btn-secondary">LogIn</button>
-    </form>
+        <form>
+            <div class="mb-3">
+                 <input type="text" class="form-control" name="username" placeholder="username">
+             </div>
+            <div class="mb-3">
+                 <input type="password" class="form-control" name="password" placeholder="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+     </form>
 </div>
+
+<br/>
+Not a User? Sign Up <a href="{% url 'register' %}">here</a>
 
 
 {% endblock %}
