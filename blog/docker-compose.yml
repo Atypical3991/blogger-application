@@ -1,0 +1,31 @@
+services:
+  nginx:
+    build: ./nginx/
+    restart: always
+    volumes:
+      - uwsgi_data:/tmp/uwsgi/
+      - web_static:/code/static/generated
+    ports:
+      - "8888:80"
+    depends_on:
+      -  web
+  web:
+    build: .
+#    command: python manage.py runserver 0.0.0.0:8000
+#    volumes:
+#      - .:/code
+    restart: always
+    command: >
+      sh -c "python manage.py collectstatic --noinput 
+      && uwsgi --ini blog.ini"
+    volumes:
+      - uwsgi_data:/tmp/uwsgi/
+      - web_static:/code/static/generated
+#    ports:
+#      - "8000:8000"
+    expose:
+      - "3000"
+
+volumes:
+  uwsgi_data:
+  web_static:
