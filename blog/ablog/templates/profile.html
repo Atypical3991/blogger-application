@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Profile {% endblock%}
+{% block content%}
+<h1>Profile</h1>
+
+<div class="card mb-3" style="max-height: 200px;">
+  <div class="row g-0">
+    <div class="col-md-4"  style="max-height: 200px;">
+        {% if profile.profile_pic.url is not None %}
+            <img src="{{profile.profile_pic.url}}" class="rounded-start" height="200px" alt="...">
+        {% else %}
+            <img src="{% static 'blog/images/default-profile-account-unknown-icon-black-silhouette-free-vector.jpeg'%}" class="rounded-start" height="200px" alt="...">
+        {% endif %}
+
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{profile.user.first_name}} {{profile.user.last_name}}</h5>
+          <p class="small text-muted">
+              <a href="{% url 'profile' profile.user.id%}">Profile page</a>
+              {% if profile.website_url%}
+              <a href="{{profile.website_url}}"> Website |</a>
+              {% endif %}
+              {% if profile.facebook_url%}
+              <a href="{{profile.facebook_url}}"> Facebook |</a>
+              {% endif %}
+              {% if profile.twitter_url%}
+              <a href="{{profile.twitter_url}}"> Twitter |</a>
+              {% endif %}
+              {% if profile.instagram_url%}
+              <a href="{{profile.instagram_url}}"> Instagram |</a>
+              {% endif %}
+              {% if profile.pinterest_url%}
+              <a href="{{profile.pinterest_url}}"> Pinterest</a>
+              {% endif %}
+          </p>
+          <p class="card-text">{{profile.bio}}</p>
+       </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

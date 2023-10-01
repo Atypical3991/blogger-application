@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.views import  generic
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm,PasswordChangeForm
 from django.urls import reverse_lazy
+from django.views.generic import UpdateView
+
 from .forms import SignUpForm, EditProfileForm
 from django.contrib.auth import views as auth_views
-
-
 
 class UserRegisterView(generic.CreateView):
     form_class = SignUpForm
@@ -18,15 +18,11 @@ class  UserEditView(generic.UpdateView):
     success_url = reverse_lazy("home")
 
     def get_object(self):
-        return self.request.user
+        if self.request.user:
+            return self.request.user
+        else:
+            return  None
 
-class  UserEditView(generic.UpdateView):
-    form_class = EditProfileForm
-    template_name = 'registration/edit_profile.html'
-    success_url = reverse_lazy("home")
-
-    def get_object(self):
-        return self.request.user
 
 def password_success(request):
     render(request,'registration/password_success.html',{})

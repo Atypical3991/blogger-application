@@ -16,7 +16,7 @@ Including another URLconf
 
 from django.urls import path
 from . import views
-from .views import HomeView, ArticleDetailView, AddArticle, UpdateArticle,DeleteArticle,AddCategory,CategoryView,CategoryListView,LikeView
+from .views import HomeView, ArticleDetailView, AddArticle, UpdateArticle,DeleteArticle,AddCategory,CategoryView,CategoryListView,LikeView,ShowProfilePageView,EditProfilePageView,CreateProfilePageView,AddCommentView
 urlpatterns = [
     # path('', views.home, name='home')
     path('', HomeView.as_view(), name='home'),
@@ -27,5 +27,10 @@ urlpatterns = [
     path('article/delete/<int:pk>', DeleteArticle.as_view(), name='article-delete'),
     path('category/<str:cat>', CategoryView, name='show-posts-by-category'),
     path('category_list/', CategoryListView, name='category-list'),
-    path('like/<int:pk>',  LikeView, name='like_post')
+    path('like/<int:pk>',  LikeView, name='like_post'),
+    path('<int:pk>/profile', ShowProfilePageView.as_view(), name='profile'),
+    path('<int:pk>/edit_profile', EditProfilePageView.as_view(), name='edit_profile_page'),
+    path('/create_profile', CreateProfilePageView.as_view(), name='create_profile_page'),
+    path('/article/<int:pk>/add_comment', AddCommentView.as_view(), name='add_comment')
+
 ]
