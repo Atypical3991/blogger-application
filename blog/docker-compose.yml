@@ -5,7 +5,7 @@ services:
     volumes:
       - web_static:/code/var/www/blogger.com/static/
     ports:
-      - "8888:80"
+      - "80:80"
     depends_on:
       -  web
   web:
