@@ -26,8 +26,4 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path("<int:pk>/password/", PasswordChangeView.as_view(), name="password_edit"),
 
-<<<<<<< Updated upstream
-]+static(settings.MEDIA_URL, document_root =settings.MEDIA_ROOT)
-=======
 ]+static(settings.MEDIA_URL, document_root =settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
->>>>>>> Stashed changes

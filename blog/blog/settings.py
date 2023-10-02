@@ -15,10 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -30,10 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 # Application definition
 
 INSTALLED_APPS = [
@@ -79,23 +71,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blog.wsgi.application'
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-<<<<<<< Updated upstream
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
-=======
         'ENGINE': 'djongo',
         'NAME': 'blogger',
         'ENFORCE_SCHEMA': False,
@@ -105,7 +85,6 @@ DATABASES = {
     }
 }
 
->>>>>>> Stashed changes
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -124,10 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -139,18 +114,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-<<<<<<< Updated upstream
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
-
-STATIC_URL = 'static/'
-MEDIA_URL= 'media/'
-MEDIA_ROOT= os.path.join(BASE_DIR, 'media')
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-=======
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
@@ -160,7 +124,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static/")
->>>>>>> Stashed changes
 ]
 
 # Default primary key field type
@@ -171,10 +134,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-<<<<<<< Updated upstream
-STATIC_ROOT = os.path.join(BASE_DIR, "static/generated/")
-=======
 STATIC_ROOT = os.path.join(BASE_DIR, "/var/www/blogger.com/static/")
 
 SESSION_COOKIE_HTTPONLY = False
->>>>>>> Stashed changes
