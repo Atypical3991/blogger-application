@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'blogger',
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
-            'host': 'mongodb+srv://JDepp:DyUeSgvLxWPdpvkt@cluster0.fqpn6.mongodb.net/?retryWrites=true&w=majority'
+            'host': f'mongodb+srv://{os.getenv("DB_USERNAME_MONGO")}:{os.getenv("DB_PASSWORD_MONGO")}@{os.getenv("DB_HOST_MONGO")}/?retryWrites=true&w=majority'
         }
     }
 }

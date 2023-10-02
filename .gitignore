@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 
 /blog/blogger_venv/
+/blog/blog_venv/
+.idea
