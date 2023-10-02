@@ -3,8 +3,12 @@ services:
     build: ./nginx/
     restart: always
     volumes:
+<<<<<<< Updated upstream
       - uwsgi_data:/tmp/uwsgi/
       - web_static:/code/static/generated
+=======
+      - web_static:/code/var/www/blogger.com/static/
+>>>>>>> Stashed changes
     ports:
       - "8888:80"
     depends_on:
@@ -19,13 +23,20 @@ services:
       sh -c "python manage.py collectstatic --noinput 
       && uwsgi --ini blog.ini"
     volumes:
+<<<<<<< Updated upstream
       - uwsgi_data:/tmp/uwsgi/
       - web_static:/code/static/generated
+=======
+      - web_static:/code/var/www/blogger.com/static/
+>>>>>>> Stashed changes
 #    ports:
 #      - "8000:8000"
     expose:
       - "3000"
 
 volumes:
+<<<<<<< Updated upstream
   uwsgi_data:
+=======
+>>>>>>> Stashed changes
   web_static:
